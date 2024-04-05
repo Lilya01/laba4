@@ -5,20 +5,22 @@ def dfs(graph, start, end, visited=None, path=None):
         visited = set()
     if path is None:
         path = []
-
+    #дабвляение в посещение
     visited.add(start)
+    #добавление в путь
     path.append(start)
 
     if start == end:
         return path, len(path) - 1
-
+    #основной алгоритм
     for neighbor in graph.get(start, []):
         if neighbor not in visited:
             result_path, path_length = dfs(graph, neighbor, end, visited, path)
             if result_path:
                 return result_path, path_length
-
+    #путь
     path.pop()
+    #удаление
     visited.remove(start)
 
     return None, 0
