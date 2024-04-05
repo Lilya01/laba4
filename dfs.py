@@ -1,4 +1,4 @@
-def dfs(graph, start, visited=None, path=None):
+def dfs(graph, start, end, visited=None, path=None):
     if visited is None:
         visited = set()
     if path is None:
@@ -7,11 +7,19 @@ def dfs(graph, start, visited=None, path=None):
     visited.add(start)
     path.append(start)
 
+    if start == end:
+        return path, len(path) - 1
+
     for neighbor in graph.get(start, []):
         if neighbor not in visited:
-            dfs(graph, neighbor, visited, path)
+            result_path, path_length = dfs(graph, neighbor, end, visited, path)
+            if result_path:
+                return result_path, path_length
 
-    return path
+    path.pop()
+    visited.remove(start)
+
+    return None, 0
 
 # Граф в виде словаря смежности
 graph = {
@@ -21,13 +29,15 @@ graph = {
     4: [2]
 }
 
-# Стартовая вершина
-start_vertex = 1
+# Входные параметры - вершины a и b
+vertex_a = 2
+vertex_b = 4
 
-# Получение пути обхода
-result_path = dfs(graph, start_vertex)
+# Получение пути обхода и длины пути от вершины a до вершины b
+result_path, path_length = dfs(graph, vertex_a, vertex_b)
 
 if result_path:
     print("Путь:", result_path)
+    print("Длина пути от вершины {} до вершины {}: {}".format(vertex_a, vertex_b, path_length))
 else:
     print("Путь от вершины {} до вершины {} не найден.".format(vertex_a, vertex_b))
