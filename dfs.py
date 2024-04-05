@@ -1,6 +1,5 @@
 #добавил коментарии
 def dfs(graph, start, end, visited=None, path=None):
-    #qwewqewqeqweqwefdfdsfsd
     if visited is None:
         visited = set()
     if path is None:
