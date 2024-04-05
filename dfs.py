@@ -1,6 +1,5 @@
 #добавил коментарии
 def dfs(graph, start, end, visited=None, path=None):
-    #12321312312312
     if visited is None:
         visited = set()
     if path is None:
@@ -9,7 +8,7 @@ def dfs(graph, start, end, visited=None, path=None):
     visited.add(start)
     #добавление в путь
     path.append(start)
-
+    #sdfsfsfdsfdsfsdfdsds
     if start == end:
         return path, len(path) - 1
     #основной алгоритм
@@ -22,7 +21,7 @@ def dfs(graph, start, end, visited=None, path=None):
     path.pop()
     #удаление
     visited.remove(start)
-
+    #sfdsfsadasdas
     return None, 0
 
 # Граф в виде словаря смежности
